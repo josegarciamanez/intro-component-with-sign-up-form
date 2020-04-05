@@ -30,20 +30,18 @@ const App = () => {
             }}
             validate={(values) => {
               const errors = {};
-              if (
-                !values.email ||
-                !values.firstName ||
-                !values.lastName ||
-                !values.password
-              ) {
-                errors.email = 'Required';
-                errors.firstName = 'Required';
-                errors.lastName = 'Required';
-                errors.password = 'Required';
+              if (!values.email) {
+                errors.email = 'Email cannot be empty';
+              } else if (!values.firstName) {
+                errors.firstName = 'Firts Name cannot be empty';
+              } else if (!values.lastName) {
+                errors.lastName = 'Last Name cannot be empty';
+              } else if (!values.password) {
+                errors.password = 'Password cannot be empty';
               } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
               ) {
-                errors.email = 'Invalid email address';
+                errors.email = 'Looks like this is not an email';
               } else if (values.password.length < 8) {
                 errors.password = 'Password almost 8 characters';
               }
@@ -51,21 +49,85 @@ const App = () => {
             }}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setTimeout(() => {
-                console.log(JSON.stringify(values, null, 2));
+                alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
               }, 400);
               resetForm({});
             }}>
-            {({ isSubmitting }) => (
+            {({ errors, isSubmitting }) => (
               <Form className='white-card mt-2'>
-                <Field type='text' name='firstName' placeholder='First Name' />
-                <ErrorMessage name='firstName' component='h5' />
-                <Field type='text' name='lastName' placeholder='Last Name' />
-                <ErrorMessage name='lastName' component='h5' />
-                <Field type='email' name='email' placeholder='Email Address' />
-                <ErrorMessage name='email' component='h5' />
-                <Field type='password' name='password' placeholder='Password' />
-                <ErrorMessage name='password' component='h5' />
+                {errors.firstName ? (
+                  <Field
+                    type='text'
+                    name='firstName'
+                    placeholder='First Name'
+                    style={{ border: '1px solid red' }}
+                  />
+                ) : (
+                  <Field
+                    type='text'
+                    name='firstName'
+                    placeholder='First Name'
+                  />
+                )}
+                <ErrorMessage
+                  name='firstName'
+                  component='h5'
+                  style={{ color: 'red' }}
+                />
+                {errors.lastName ? (
+                  <Field
+                    type='text'
+                    name='lastName'
+                    placeholder='Last Name'
+                    style={{ border: '1px solid red' }}
+                  />
+                ) : (
+                  <Field type='text' name='lastName' placeholder='Last Name' />
+                )}
+                <ErrorMessage
+                  name='lastName'
+                  component='h5'
+                  style={{ color: 'red' }}
+                />
+                {errors.email ? (
+                  <Field
+                    type='email'
+                    name='email'
+                    placeholder='Email Address'
+                    style={{ border: '1px solid red' }}
+                  />
+                ) : (
+                  <Field
+                    type='email'
+                    name='email'
+                    placeholder='Email Address'
+                  />
+                )}
+                <ErrorMessage
+                  name='email'
+                  component='h5'
+                  style={{ color: 'red' }}
+                />
+                {errors.password ? (
+                  <Field
+                    type='password'
+                    name='password'
+                    placeholder='Password'
+                    style={{ border: '1px solid red' }}
+                  />
+                ) : (
+                  <Field
+                    type='password'
+                    name='password'
+                    placeholder='Password'
+                  />
+                )}
+                <ErrorMessage
+                  name='password'
+                  component='h5'
+                  style={{ color: 'red' }}
+                />
                 <button
                   className='submit'
                   type='submit'
