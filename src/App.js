@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import ErrorLogo from './images/icon-error.svg';
 
 const App = () => {
   return (
@@ -61,7 +62,12 @@ const App = () => {
                     type='text'
                     name='firstName'
                     placeholder='First Name'
-                    style={{ border: '1px solid red' }}
+                    style={{
+                      border: '1px solid red',
+                      backgroundImage: `url(${ErrorLogo})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 10px center',
+                    }}
                   />
                 ) : (
                   <Field
@@ -80,7 +86,12 @@ const App = () => {
                     type='text'
                     name='lastName'
                     placeholder='Last Name'
-                    style={{ border: '1px solid red' }}
+                    style={{
+                      border: '1px solid red',
+                      backgroundImage: `url(${ErrorLogo})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 10px center',
+                    }}
                   />
                 ) : (
                   <Field type='text' name='lastName' placeholder='Last Name' />
@@ -95,7 +106,12 @@ const App = () => {
                     type='email'
                     name='email'
                     placeholder='Email Address'
-                    style={{ border: '1px solid red' }}
+                    style={{
+                      border: '1px solid red',
+                      backgroundImage: `url(${ErrorLogo})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 10px center',
+                    }}
                   />
                 ) : (
                   <Field
@@ -114,7 +130,12 @@ const App = () => {
                     type='password'
                     name='password'
                     placeholder='Password'
-                    style={{ border: '1px solid red' }}
+                    style={{
+                      border: '1px solid red',
+                      backgroundImage: `url(${ErrorLogo})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 10px center',
+                    }}
                   />
                 ) : (
                   <Field
